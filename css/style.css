@@ -345,7 +345,7 @@ h3 { font-size: var(--font-heading-sm); }
 
 .audience-grid { display: grid; grid-template-columns: 1.15fr 0.85fr 0.85fr; gap: 20px; }
 .audience-heading { padding-right: clamp(20px, 5vw, 70px); }
-.audience-heading h3 { font-size: clamp(2rem, 1.65rem + 1.6vw, 2.75rem); }
+.audience-heading h2 { font-size: clamp(2rem, 1.65rem + 1.6vw, 2.75rem); }
 .audience-highlight { max-width: 58ch; margin-top: 36px; padding-left: 20px; color: #d0d0db; border-left: 2px solid var(--primary); font-size: var(--font-body-lg); line-height: 1.7; text-align: justify; hyphens: auto; }
 .audience-panel { padding: clamp(28px, 4vw, 40px); background: var(--surface-raised); border: 1px solid var(--border); border-radius: var(--radius); }
 .audience-panel h3 { margin-bottom: 28px; }
@@ -463,7 +463,7 @@ h3 { font-size: var(--font-heading-sm); }
     .pillar { min-height: 0; }
     .pillar > div { grid-column: 1 / -1; }
     .audience-heading { grid-column: auto; margin-bottom: 20px; }
-    .audience-heading h3 { font-size: clamp(2rem, 1.6rem + 2vw, 2.5rem); }
+    .audience-heading h2 { font-size: clamp(2rem, 1.6rem + 2vw, 2.5rem); }
     .gallery-grid { gap: 28px; }
     .gallery-card { width: min(100%, 410px); margin-inline: auto; }
     .team-card, .team-card:nth-child(4), .team-card:last-child { grid-column: auto; min-height: 275px; }

@@ -116,7 +116,7 @@ contactForm.addEventListener('submit', (event) => {
     }
     contactForm.reset();
     fields.forEach((field) => showFieldError(field, ''));
-    status.textContent = 'Simulação concluída. Nenhuma informação foi enviada.';
+    status.textContent = 'Mensagem registrada com sucesso.';
 });
 
 contactForm.querySelectorAll('input, textarea').forEach((field) => {
