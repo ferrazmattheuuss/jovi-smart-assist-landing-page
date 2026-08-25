@@ -185,7 +185,7 @@
                     <article class="team-card">
                         <span class="member-initials" aria-hidden="true">MA</span>
                         <div><h3>Matheus Augusto</h3><p>Analista de Sistemas</p><small>Engenharia de Software</small></div>
-                        <span class="link-soon">LinkedIn em breve</span>
+                        <a href="https://www.linkedin.com/in/matheus-augusto-da-silva-3704033b5/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Matheus Augusto (abre em nova aba)">LinkedIn <span aria-hidden="true">↗</span></a>
                     </article>
                 </div>
             </div>
@@ -197,25 +197,25 @@
                     <p class="eyebrow">Contato</p>
                     <h2 id="contact-title">Fale com a Debug Team</h2>
                     <dl class="contact-details">
-                        <div><dt>GitHub oficial do projeto</dt><dd>Link em breve</dd></div>
+                        <div><dt>GitHub oficial do projeto</dt><dd><a href="https://github.com/ferrazmattheuuss/jovi-smart-assist-landing-page" target="_blank" rel="noopener noreferrer" aria-label="Repositório oficial do JOVI Smart Assist no GitHub (abre em nova aba)">github.com/ferrazmattheuuss/jovi-smart-assist-landing-page</a></dd></div>
                         <div><dt>E-mail do projeto</dt><dd>contato@jovismartassist.com</dd></div>
                     </dl>
                 </div>
                 <form class="contact-form" id="contact-form" novalidate>
                     <div class="form-field">
                         <label for="name">Nome</label>
-                        <input id="name" name="name" type="text" placeholder="Seu nome" autocomplete="name" required>
-                        <span class="field-error" aria-live="polite"></span>
+                        <input id="name" name="name" type="text" placeholder="Seu nome" autocomplete="name" aria-describedby="name-error" required>
+                        <span class="field-error" id="name-error" aria-live="polite"></span>
                     </div>
                     <div class="form-field">
                         <label for="email">E-mail</label>
-                        <input id="email" name="email" type="email" placeholder="voce@email.com" autocomplete="email" required>
-                        <span class="field-error" aria-live="polite"></span>
+                        <input id="email" name="email" type="email" placeholder="voce@email.com" autocomplete="email" aria-describedby="email-error" required>
+                        <span class="field-error" id="email-error" aria-live="polite"></span>
                     </div>
                     <div class="form-field form-field-full">
                         <label for="message">Mensagem</label>
-                        <textarea id="message" name="message" rows="5" placeholder="Como podemos ajudar?" required></textarea>
-                        <span class="field-error" aria-live="polite"></span>
+                        <textarea id="message" name="message" rows="5" placeholder="Como podemos ajudar?" aria-describedby="message-error" required></textarea>
+                        <span class="field-error" id="message-error" aria-live="polite"></span>
                     </div>
                     <div class="form-actions form-field-full">
                         <button class="button" type="submit">Enviar mensagem</button>

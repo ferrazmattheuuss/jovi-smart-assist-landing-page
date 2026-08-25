@@ -6,23 +6,33 @@ const video = modal.querySelector('video');
 const openVideoButtons = document.querySelectorAll('.open-video');
 const closeModalButtons = modal.querySelectorAll('[data-close-modal]');
 const contactForm = document.querySelector('#contact-form');
+const backgroundElements = [...document.querySelectorAll('body > .skip-link, body > header, body > main, body > footer')];
+const previousInertStates = new Map();
 let lastFocusedElement = null;
 
-function closeMenu() {
-    mainNav.classList.remove('is-open');
-    menuToggle.classList.remove('is-open');
-    menuToggle.setAttribute('aria-expanded', 'false');
-    menuToggle.setAttribute('aria-label', 'Abrir menu');
-}
-
-menuToggle.addEventListener('click', () => {
-    const isOpen = mainNav.classList.toggle('is-open');
+function setMenuState(isOpen) {
+    mainNav.classList.toggle('is-open', isOpen);
     menuToggle.classList.toggle('is-open', isOpen);
     menuToggle.setAttribute('aria-expanded', String(isOpen));
     menuToggle.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
+}
+
+function closeMenu() {
+    setMenuState(false);
+}
+
+menuToggle.addEventListener('click', () => {
+    setMenuState(menuToggle.getAttribute('aria-expanded') !== 'true');
 });
 
 navLinks.forEach((link) => link.addEventListener('click', closeMenu));
+
+document.addEventListener('click', (event) => {
+    const menuIsOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+    const clickIsInsideMenu = mainNav.contains(event.target) || menuToggle.contains(event.target);
+
+    if (menuIsOpen && !clickIsInsideMenu) closeMenu();
+});
 
 function getFocusableElements() {
     return [...modal.querySelectorAll('button, video, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')]
@@ -32,6 +42,10 @@ function getFocusableElements() {
 function openModal() {
     lastFocusedElement = document.activeElement;
     modal.hidden = false;
+    backgroundElements.forEach((element) => {
+        previousInertStates.set(element, element.hasAttribute('inert'));
+        element.setAttribute('inert', '');
+    });
     document.body.classList.add('modal-open');
     modal.querySelector('.modal-close').focus();
 }
@@ -41,6 +55,11 @@ function closeModal() {
     video.currentTime = 0;
     modal.hidden = true;
     document.body.classList.remove('modal-open');
+    backgroundElements.forEach((element) => {
+        if (previousInertStates.get(element)) element.setAttribute('inert', '');
+        else element.removeAttribute('inert');
+    });
+    previousInertStates.clear();
     if (lastFocusedElement) lastFocusedElement.focus();
 }
 
@@ -52,7 +71,11 @@ openVideoButtons.forEach((button) => button.addEventListener('click', () => {
 closeModalButtons.forEach((button) => button.addEventListener('click', closeModal));
 
 document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && !modal.hidden) closeModal();
+    if (event.key === 'Escape') {
+        if (!modal.hidden) closeModal();
+        else closeMenu();
+    }
+
     if (event.key === 'Tab' && !modal.hidden) {
         const focusableElements = getFocusableElements();
         const firstElement = focusableElements[0];
@@ -93,7 +116,7 @@ contactForm.addEventListener('submit', (event) => {
     }
     contactForm.reset();
     fields.forEach((field) => showFieldError(field, ''));
-    status.textContent = 'Mensagem registrada com sucesso.';
+    status.textContent = 'Simulação concluída. Nenhuma informação foi enviada.';
 });
 
 contactForm.querySelectorAll('input, textarea').forEach((field) => {
